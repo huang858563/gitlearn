@@ -1,0 +1,62 @@
+CREATE DEFINER=`root`@`%` PROCEDURE `construct_table_sp`( )
+BEGIN
+	DECLARE
+		v_table_name VARCHAR ( 255 );
+		
+		declare v_level1 varchar(100);
+		declare v_level2 varchar(100);
+		declare v_level3 varchar(100);
+		declare v_level4 varchar(100);
+		declare v_folder_id varchar(100);
+		declare kpi_model_id varchar(100);
+		declare kpi_model_id_new varchar(100);
+	DECLARE
+		done INT DEFAULT 0;
+	DECLARE
+		v_tab_count INT DEFAULT 0;
+	DECLARE
+		cur_table_name CURSOR FOR SELECT
+		table_name 
+	FROM
+		information_schema.`TABLES` 
+	WHERE
+		table_schema = 'dp_ads' 
+		AND ( table_name LIKE   '%ppm_ads_scm_mbu_mapping%'   );
+	DECLARE
+		CONTINUE HANDLER FOR NOT found 
+		SET done = 1;
+	OPEN cur_table_name;
+	looplab :
+	LOOP
+			FETCH cur_table_name INTO v_table_name;
+		IF
+			done = 1 THEN
+				LEAVE looplab;
+			
+		END IF;
+		set kpi_model_id=NULL;
+		set v_folder_id=NULL;
+		select SPLIT_STR(v_table_name,'_',1),SPLIT_STR(v_table_name,'_',2),SPLIT_STR(v_table_name,'_',3),SPLIT_STR(v_table_name,'_',4) into v_level1,v_level2,v_level3,v_level4;
+		
+	  select a.id into v_folder_id from sys_data_group a where a.item_name=v_level3 and a.group_type='kpimodel';
+		
+		if ISNULL(v_folder_id) then
+		set v_level1='1';
+		else
+				select id into kpi_model_id from sys_kpi_model where name=v_table_name and folder_id=v_folder_id;
+				 if ISNULL(kpi_model_id) then
+			set kpi_model_id_new=uuid();
+			insert into sys_kpi_model values(kpi_model_id_new,v_table_name,'MySQL',v_folder_id,1,'datamanager',now(),'');
+		
+		insert into sys_kpimodel_detail select uuid(),kpi_model_id_new,COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH, case IS_NULLABLE when 'YES' then 1 else 0 END as 'null_able',NULL,
+		case COLUMN_KEY when 'PRI' then 'pk' else NULL end as 'field_type',1,column_comment,'datamanager',now(),NULL
+		from  information_schema.`COLUMNS` where table_schema='dp_ads' and table_name=v_table_name;
+		SET done = 0;
+		end if;
+		end if;
+		set v_tab_count=v_tab_count+1;
+	END LOOP;
+
+	CLOSE cur_table_name;
+select v_tab_count;
+END
