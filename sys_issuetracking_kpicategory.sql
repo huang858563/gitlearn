@@ -1,0 +1,9 @@
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('058746ba-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66976-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('05874ec7-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66bd1-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('0587547e-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66c3b-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('05875879-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66c69-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('05875c72-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66c95-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('05876154-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66cbe-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('05876533-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66ce2-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('058768ca-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66d03-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
+INSERT INTO `sys_issuetracking_kpicategory` VALUES ('05876c5b-c257-11ea-a7a5-00505682ad31', 'oee-process-L6', 'b3f66d2c-c24e-11ea-a7a5-00505682ad31', 1, 'gwh', '2020-07-10 10:42:39', NULL);
